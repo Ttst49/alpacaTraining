@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Embedding;
 use App\Entity\Word;
+use App\Repository\DayRepository;
 use App\Repository\WordRepository;
 use App\Service\DayService;
 use App\Service\WordEmbeddingService;
@@ -64,6 +65,11 @@ class HomeController extends AbstractController
             "value"=>$result
         ];
         return $this->json($response,200);
+    }
+
+
+    public function getDayInformation(DayRepository $repository){
+        return $repository->findAll();
     }
 
 }
