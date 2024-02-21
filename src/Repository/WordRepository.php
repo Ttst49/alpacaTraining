@@ -21,6 +21,19 @@ class WordRepository extends ServiceEntityRepository
         parent::__construct($registry, Word::class);
     }
 
+
+    public function getRandomWord(): ?string
+    {
+        $idArray = array();
+        $words = $this->findAll();
+        foreach ($words as $word){
+            $idArray[] = $word->getId();
+        }
+
+        $randomWordId = array_rand($idArray);
+        return $this->find($idArray[$randomWordId])->getValue();
+    }
+
 //    /**
 //     * @return Word[] Returns an array of Word objects
 //     */
