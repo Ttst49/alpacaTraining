@@ -2,8 +2,7 @@
 
 namespace App\Service;
 
-use App\Repository\WordRepository;
-use http\Env\Response;
+
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class WordEmbeddingService
