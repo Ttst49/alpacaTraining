@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Embedding;
 use App\Entity\Word;
 use App\Repository\WordRepository;
+use App\Service\DayService;
 use App\Service\WordEmbeddingService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,9 +21,14 @@ class HomeController extends AbstractController
                                WordRepository $repository,
                                WordEmbeddingService $service,
                                EntityManagerInterface $manager,
-    ): Response
-    {
-        $searchedWord = "zombie";
+                               DayService $dayService,
+    ): Response{
+
+
+
+        $searchedWord = $dayService->getActualDay()->getWord();
+
+
         $actualWord = $request->getPayload()->get("word");
 
         $searchedWordArray =$repository->findBy(["value" => $searchedWord])[0];
